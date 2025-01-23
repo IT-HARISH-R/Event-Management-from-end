@@ -31,11 +31,9 @@ const EventForm = () => {
         }
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Create FormData object to send as multipart/form-data
         const data = new FormData();
         data.append('title', formData.title);
         data.append('description', formData.description);
@@ -44,11 +42,10 @@ const EventForm = () => {
         data.append('location', formData.location);
         data.append('ticketPrice', formData.ticketPrice);
         data.append('category', formData.category);
-        data.append('organizer', formData.organizer); // Replace with the actual field name or value
+        data.append('organizer', formData.organizer);
 
-    
-        
-        // Append files (images and videos)
+
+
         if (images) {
             for (let i = 0; i < images.length; i++) {
                 data.append('images', images[i]);
@@ -61,9 +58,11 @@ const EventForm = () => {
             }
         }
         try {
-            console.log("kkk",data)
-            // Send form data using Axios instance
-            const response = await api.post('/event/create', data);
+            const response = await api.post('/event/create', data, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
             console.log('Event created successfully:', response.data);
             alert('Event created successfully');
 
