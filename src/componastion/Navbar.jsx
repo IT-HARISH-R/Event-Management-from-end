@@ -7,7 +7,7 @@ const Navbar = () => {
     const user = useSelector((state) => state.user.user); // Get user from Redux store
     const dispatch = useDispatch();
 
-    console.log("------------",user)
+    console.log("------------", user)
 
     return (
         <nav className="bg-gray-900 text-white p-4 shadow-md">
@@ -38,28 +38,34 @@ const Navbar = () => {
                 </div>
 
                 {/* User Profile or Login */}
-                <div className="flex items-center space-x-4">
-                    {/* {user ? ():()} */}
-                    <Link
-                        to="/login"
-                        className="text-lg hover:text-gray-400 transition duration-300"
-                    >
-                        Login
-                    </Link>
-                    <Link
-                        to="/signup"
-                        className="text-lg bg-blue-500 px-4 py-2 rounded-md text-white hover:bg-blue-400 transition duration-300"
-                    >
-                        Sign Up
-                    </Link>
 
-                    <Link
-                        to="/profile"
-                        className="text-lg bg-blue-500 px-4 py-2 rounded-md text-white hover:bg-blue-400 transition duration-300"
-                    >
-                        Profile
-                    </Link>
-                </div>
+                {!user ? (
+                    <div className="flex items-center space-x-4">
+                        <Link
+                            to="/login"
+                            className="text-lg hover:text-gray-400 transition duration-300"
+                        >
+                            Login
+                        </Link>
+                        <Link
+                            to="/signup"
+                            className="text-lg bg-blue-500 px-4 py-2 rounded-md text-white hover:bg-blue-400 transition duration-300"
+                        >
+                            Sign Up
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="flex items-center space-x-4">
+                        <Link
+                            to="/profile"
+                            className="text-lg bg-blue-500 px-4 py-2 rounded-md text-white hover:bg-blue-400 transition duration-300"
+                        >
+                            Profile
+                        </Link>
+                    </div>
+                )}
+
+
             </div>
         </nav>
     );
