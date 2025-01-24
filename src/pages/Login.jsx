@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../axios'; // Ensure the axios instance is correctly configured
 import { useDispatch } from 'react-redux';
+import { login } from '../Slice/userSlice ';
 // import { setUser } from '../Slice/userSlice ';
 
 const Login = () => {
@@ -34,9 +35,23 @@ const Login = () => {
         // Dispatch user data to Redux store
         // dispatch(setUser(response.data.user));
         console.log(response.data)
-
+        const fetchProfile = async () => {
+          try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+              throw new Error('Token missing. Please log in.');
+            }
+    
+            const response = await api.get('/auth/profile');
+            dispatch(login(response.data));
+            navigate(-2);
+          } catch (err) {
+            setError(err.message || 'Failed to fetch profile.');
+            console.error(err);
+          } 
+        };
         // Navigate to the profile page
-        navigate('/profile');
+        fetchProfile()
       } else {
         setError(response.data.message || 'Login failed');
       }
@@ -46,6 +61,9 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
+
+
+
   };
 
   return (
