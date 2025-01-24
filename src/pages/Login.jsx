@@ -41,14 +41,14 @@ const Login = () => {
             if (!token) {
               throw new Error('Token missing. Please log in.');
             }
-    
+
             const response = await api.get('/auth/profile');
             dispatch(login(response.data));
-            navigate(-2);
+            navigate('/');
           } catch (err) {
             setError(err.message || 'Failed to fetch profile.');
             console.error(err);
-          } 
+          }
         };
         // Navigate to the profile page
         fetchProfile()
@@ -61,8 +61,6 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
-
-
 
   };
 

@@ -52,7 +52,7 @@ const Navbar = () => {
                     >
                         Search
                     </Link>
-                    {user && (
+                    {user && user.role === 'organizers' && (
                         <Link
                             to="/EventForm"
                             className="text-lg hover:text-gray-400 transition duration-300"
@@ -64,7 +64,7 @@ const Navbar = () => {
 
                 {/* User Profile or Login */}
                 {!user ? (
-                    <div className="flex items-center space-x-4">
+                    <div className="hidden lg:flex items-center space-x-4 ">
                         <Link
                             to="/login"
                             className="text-lg hover:text-gray-400 transition duration-300"
@@ -79,7 +79,7 @@ const Navbar = () => {
                         </Link>
                     </div>
                 ) : (
-                    <div className="flex items-center space-x-4">
+                    <div className="items-center space-x-4 hidden lg:flex">
                         <Link
                             to="/profile"
                             className="text-lg bg-blue-500 px-4 py-2 rounded-md text-white hover:bg-blue-400 transition duration-300"
@@ -186,7 +186,7 @@ export default Navbar;
 //                     >
 //                         Search
 //                     </Link>
-//                     {user&& 
+//                     {user&&
 //                     <Link
 //                         to="/EventForm"
 //                         className="text-lg hover:text-gray-400 transition duration-300"

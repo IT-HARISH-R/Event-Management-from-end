@@ -36,31 +36,33 @@ const EventDetails = () => {
             <img
               src={`http://localhost:3000/${event.images[0]}`}
               alt={event.title}
-              className="w-full h-48 object-cover rounded-md mb-4"
+              // h-48
+              className="w-full mx-auto object-cover rounded-md mb-4"
             />
-            <p className="text-gray-600">{event.description}</p>
+            <p className="text-gray-600 lg:text-4xl">{event.description}</p>
             <div className="mt-4">
-              <p className="text-sm text-gray-500">Date: {new Date(event.date).toLocaleDateString()}</p>
-              <p className="text-sm text-gray-500">Time: {event.time}</p>
-              <p className="text-sm text-gray-500">Location: {event.location}</p>
-              <p className="text-sm text-gray-500">Price: ₹{event.ticketPrice}</p>
+              <p className="text-sm text-gray-500 lg:text-3xl">Date: {new Date(event.date).toLocaleDateString()}</p>
+              <p className="text-sm text-gray-500 lg:text-3xl">Time: {event.time}</p>
+              <p className="text-sm text-gray-500 lg:text-3xl">Location: {event.location}</p>
+              <p className="text-sm text-gray-500 lg:text-3xl">Price: ₹{event.ticketPrice}</p>
+            </div>
+            {/* Booking Button */}
+            <div className="mt-6">
+              <Link to={`/booking/${id}`}>
+                <button className="block mx-auto w-[70%] lg:text-2xl bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                  Book Now
+                </button>
+              </Link>
             </div>
             <div className="mt-6">
-              <h2 className="text-xl font-semibold">Event Video</h2>
+              <h2 className="text-xl font-semibold lg:text-4xl m-10">Event Video</h2>
               <video controls className="w-full mt-2">
                 <source src={`http://localhost:3000/${event.videos[0]}`} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
 
-            {/* Booking Button */}
-            <div className="mt-6">
-              <Link to={`/booking/${id}`}>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-                  Book Now
-                </button>
-              </Link>
-            </div>
+
           </div>
         </>
       )}

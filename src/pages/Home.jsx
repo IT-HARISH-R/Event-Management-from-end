@@ -42,11 +42,11 @@ const Home = () => {
                 alt={event.title}
                 className="w-full h-48 object-cover rounded-md mb-4"
               />
-              <h2 className="text-xl font-semibold text-gray-800">{event.title}</h2>
+              <h2 className="text-xl text-center lg:text-3xl font-semibold text-gray-800">{event.title}</h2>
               <div className="mt-4">
-                <p className="text-sm text-gray-500">Date: {new Date(event.date).toLocaleDateString()}</p>
-                <p className="text-sm text-gray-500">Location: {event.location}</p>
-                <p className="text-sm text-gray-500">Price: ₹{event.ticketPrice}</p>
+                <p className="text-sm text-gray-500 lg:text-2xl">Date: {new Date(event.date).toLocaleDateString()}</p>
+                <p className="text-sm text-gray-500 lg:text-2xl">Location: {event.location}</p>
+                <p className="text-sm text-gray-500 lg:text-2xl">Price: ₹{event.ticketPrice}</p>
               </div>
               <Link
                 to={`/event/${event._id}`}
