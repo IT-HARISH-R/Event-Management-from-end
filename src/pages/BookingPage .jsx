@@ -48,7 +48,7 @@ const BookingPage = () => {
 
             // Make a request to your backend to create a Razorpay order
             const { data } = await api.post('/ticket/create', {
-                amount: ticketPrice * ticketQuantity, // Total amount based on quantity
+                amount: ticketPrice, // Total amount based on quantity
                 eventId: id, // Event ID
                 ticketType,  // Selected ticket type
                 quantity: ticketQuantity, // Quantity selected

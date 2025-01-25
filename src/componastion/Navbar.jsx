@@ -52,6 +52,12 @@ const Navbar = () => {
                     >
                         Search
                     </Link>
+                    <Link
+                        to="/dashboard"
+                        className="text-lg hover:text-gray-400 transition duration-300"
+                    >
+                        Dashboard
+                    </Link>
                     {user && user.role === 'organizers' && (
                         <Link
                             to="/EventForm"
