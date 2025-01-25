@@ -8,10 +8,12 @@ const EventForm = () => {
         date: '',
         time: '',
         location: '',
-        ticketPrice: '',
-        category: ''
+        category: '',
     });
 
+    const [ticketTypes, setTicketTypes] = useState([
+        { type: '', price: '', quantity: '' }
+    ]);
     const [images, setImages] = useState(null);
     const [videos, setVideos] = useState(null);
 
@@ -21,7 +23,7 @@ const EventForm = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    // Handle file input changes (for images and videos)
+    // Handle file input changes
     const handleFileChange = (e) => {
         const { name, files } = e.target;
         if (name === 'images') {
@@ -29,6 +31,24 @@ const EventForm = () => {
         } else if (name === 'videos') {
             setVideos(files);
         }
+    };
+
+    // Handle ticket type changes
+    const handleTicketChange = (index, field, value) => {
+        const updatedTickets = [...ticketTypes];
+        updatedTickets[index][field] = value;
+        setTicketTypes(updatedTickets);
+    };
+
+    // Add a new ticket type
+    const addTicketType = () => {
+        setTicketTypes([...ticketTypes, { type: '', price: '', quantity: '' }]);
+    };
+
+    // Remove a ticket type
+    const removeTicketType = (index) => {
+        const updatedTickets = ticketTypes.filter((_, i) => i !== index);
+        setTicketTypes(updatedTickets);
     };
 
     const handleSubmit = async (e) => {
@@ -40,11 +60,8 @@ const EventForm = () => {
         data.append('date', formData.date);
         data.append('time', formData.time);
         data.append('location', formData.location);
-        data.append('ticketPrice', formData.ticketPrice);
         data.append('category', formData.category);
-        data.append('organizer', formData.organizer);
-
-
+        data.append('ticketTypes', JSON.stringify(ticketTypes));
 
         if (images) {
             for (let i = 0; i < images.length; i++) {
@@ -57,6 +74,7 @@ const EventForm = () => {
                 data.append('videos', videos[i]);
             }
         }
+
         try {
             const response = await api.post('/event/create', data, {
                 headers: {
@@ -65,7 +83,6 @@ const EventForm = () => {
             });
             console.log('Event created successfully:', response.data);
             alert('Event created successfully');
-
         } catch (error) {
             console.error('Error creating event:', error);
             alert('Error creating event');
@@ -141,18 +158,6 @@ const EventForm = () => {
             </div>
 
             <div>
-                <label className="block text-gray-700 font-medium mb-2">Ticket Price</label>
-                <input
-                    type="number"
-                    name="ticketPrice"
-                    value={formData.ticketPrice}
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                    required
-                />
-            </div>
-
-            <div>
                 <label className="block text-gray-700 font-medium mb-2">Category</label>
                 <input
                     type="text"
@@ -173,7 +178,6 @@ const EventForm = () => {
                     multiple
                     onChange={handleFileChange}
                     className="w-full border border-gray-300 rounded-md p-2"
-                    required
                 />
             </div>
 
@@ -186,8 +190,72 @@ const EventForm = () => {
                     multiple
                     onChange={handleFileChange}
                     className="w-full border border-gray-300 rounded-md p-2"
-                    required
                 />
+            </div>
+
+            <div>
+                <label className="block text-gray-700 font-medium mb-2">Ticket Types</label>
+                {ticketTypes.map((ticket, index) => (
+                    <div key={index} className="mb-4 border p-4 rounded-md">
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">Type</label>
+                            <select
+                                value={ticket.type}
+                                onChange={(e) => handleTicketChange(index, 'type', e.target.value)}
+                                className="w-full border border-gray-300 rounded-md p-2"
+                                required
+                            >
+                                <option value="">Select Type</option>
+                                <option value="General Admission">General Admission</option>
+                                <option value="VIP">VIP</option>
+                                {/* <option value="Early Bird">Early Bird</option> */}
+                            </select>
+                            {/* <input
+                                type="text"
+                                value={ticket.type}
+                                onChange={(e) => handleTicketChange(index, 'type', e.target.value)}
+                                className="w-full border border-gray-300 rounded-md p-2"
+                                required
+                            /> */}
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">Price</label>
+                            <input
+                                type="number"
+                                value={ticket.price}
+                                onChange={(e) => handleTicketChange(index, 'price', e.target.value)}
+                                className="w-full border border-gray-300 rounded-md p-2"
+                                required
+                            />
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 font-medium mb-1">Quantity</label>
+                            <input
+                                type="number"
+                                value={ticket.quantity}
+                                onChange={(e) => handleTicketChange(index, 'quantity', e.target.value)}
+                                className="w-full border border-gray-300 rounded-md p-2"
+                                required
+                            />
+                        </div>
+                        {ticketTypes.length > 1 && (
+                            <button
+                                type="button"
+                                onClick={() => removeTicketType(index)}
+                                className="text-red-500 hover:underline"
+                            >
+                                Remove
+                            </button>
+                        )}
+                    </div>
+                ))}
+                <button
+                    type="button"
+                    onClick={addTicketType}
+                    className="text-blue-500 hover:underline mt-2"
+                >
+                    Add Ticket Type
+                </button>
             </div>
 
             <div>

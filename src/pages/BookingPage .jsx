@@ -7,7 +7,8 @@ const BookingPage = () => {
     const { id } = useParams(); // Get the event ID from the URL
     const [event, setEvent] = useState(null);
     const [ticketQuantity, setTicketQuantity] = useState(1);
-    const [ticketType, setTicketType] = useState('Regular'); // Default ticket type is Regular
+    const [ticketType, setTicketType] = useState(''); // Default ticket type is Regular
+    const [ticketPrice, setTicketPrice] = useState(0); // State for ticket price
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isProcessingPayment, setIsProcessingPayment] = useState(false); // New state for payment processing
@@ -25,6 +26,9 @@ const BookingPage = () => {
             try {
                 const response = await api.get(`/event/${id}`);
                 setEvent(response.data);
+                // Set the default ticket price based on the first ticket type
+                setTicketPrice(response.data.ticketTypes[0].price);
+                setTicketType(response.data.ticketTypes[0].type)
             } catch (err) {
                 setError('Error fetching event details');
                 console.error(err);
@@ -44,7 +48,7 @@ const BookingPage = () => {
 
             // Make a request to your backend to create a Razorpay order
             const { data } = await api.post('/ticket/create', {
-                amount: event.ticketPrice, // Total amount based on quantity
+                amount: ticketPrice * ticketQuantity, // Total amount based on quantity
                 eventId: id, // Event ID
                 ticketType,  // Selected ticket type
                 quantity: ticketQuantity, // Quantity selected
@@ -57,7 +61,7 @@ const BookingPage = () => {
             }
 
             const options = {
-                key: 'rzp_test_ymKyS0BIhx3F7y', // Your Razorpay Key ID
+                key: 'rzp_test_ymKyS0BIhx3F7y',  
                 amount: data.amount,
                 currency: 'INR',
                 name: event.title,
@@ -66,13 +70,12 @@ const BookingPage = () => {
                 handler: async (response) => {
                     // Handle successful payment here
                     try {
-                        console.log(response)
-                        console.log(response.payment_id)
-                        console.log(response.signature)
+                        console.log("----------",response)
                         await api.post('/ticket/handlePaymentSuccess', {
                             paymentId: response.razorpay_payment_id,
                             orderId: data.orderId,
                             signature: response.razorpay_signature,
+                            event: id
                         });
                         alert('Booking Successful!');
                         navigate('/success'); // Navigate to success page
@@ -103,6 +106,16 @@ const BookingPage = () => {
         }
     };
 
+    // Handle ticket type change and update the price
+    const handleTicketChange = (e) => {
+        const selectedTicketType = e.target.value;
+        setTicketType(selectedTicketType);
+
+        // Update ticket price based on selected ticket type
+        const selectedTicket = event.ticketTypes.find((ticket) => ticket.type === selectedTicketType);
+        setTicketPrice(selectedTicket ? selectedTicket.price : 0);
+    };
+
     if (loading) return <div className="p-4">Loading booking details...</div>;
     if (error) return <div className="p-4 text-red-500">{error}</div>;
 
@@ -122,7 +135,7 @@ const BookingPage = () => {
                             <p className="text-sm text-gray-500">Date: {new Date(event.date).toLocaleDateString()}</p>
                             <p className="text-sm text-gray-500">Time: {event.time}</p>
                             <p className="text-sm text-gray-500">Location: {event.location}</p>
-                            <p className="text-sm text-gray-500">Price: ₹{event.ticketPrice}</p>
+                            <p className="text-sm text-gray-500">Price: ₹{ticketPrice}</p>
                         </div>
 
                         {/* Ticket Quantity Input */}
@@ -137,19 +150,23 @@ const BookingPage = () => {
                             />
                         </div>
 
-                        {/* Ticket Type Dropdown */}
+                        {/* Ticket Type Selection */}
                         <div className="mt-4">
                             <label className="block text-gray-700">Ticket Type:</label>
                             <select
                                 value={ticketType}
-                                onChange={(e) => setTicketType(e.target.value)}
-                                className="mt-2 p-2 border border-gray-300 rounded-md"
+                                onChange={handleTicketChange}
+                                className="block w-full px-4 py-2 text-lg border rounded-md mb-4"
                             >
-                                <option value="Regular">Regular</option>
-                                <option value="VIP">VIP</option>
+                                {event.ticketTypes.map((ticket) => (
+                                    <option key={ticket._id} value={ticket.type}>
+                                        {ticket.type} - ₹{ticket.price} (Available: {ticket.quantity})
+                                    </option>
+                                ))}
                             </select>
                         </div>
-
+                        {console.log(ticketType)}
+                        {/* {useState()} */}
                         {/* Booking Button */}
                         <div className="mt-6">
                             <button
