@@ -14,6 +14,7 @@ import EventDetails from './componastion/EventDetails';
 import BookingPage from './pages/BookingPage ';
 import Dashboard from './pages/Dashboard';
 import ManageRegistrations from './componastion/handleTransferTicket';
+import TransferTicket from './componastion/TransferTicket';
 
 // Import the new ticket booking and payment components
 // import TicketBooking from './components/TicketBooking';
@@ -37,6 +38,8 @@ const App = () => {
             {/* Add Route for Event Details */}
             <Route path="/event/:id" element={<EventDetails />} />
             <Route path="/booking/:id" element={<BookingPage />} /> {/* New booking page route */}
+
+            <Route path="/ticket/transfer/:ticketId" element={<TransferTicket />} />
 
             <Route path="/cancelTicket/:id" element={<ManageRegistrations />} ></Route>
 

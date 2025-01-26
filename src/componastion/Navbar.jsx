@@ -112,12 +112,20 @@ const Navbar = () => {
                         Search
                     </Link>
                     {user && (
-                        <Link
-                            to="/EventForm"
-                            className="text-lg hover:text-gray-400 transition duration-300"
-                        >
-                            EventForm
-                        </Link>
+                        <>
+                            <Link
+                                to="/EventForm"
+                                className="text-lg hover:text-gray-400 transition duration-300"
+                            >
+                                EventForm
+                            </Link>
+                            <Link
+                                to="/dashboard"
+                                className="text-lg hover:text-gray-400 transition duration-300"
+                            >
+                                Dashboard
+                            </Link>
+                        </>
                     )}
                     {!user ? (
                         <>
