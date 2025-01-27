@@ -70,8 +70,8 @@ const AttendeeList = () => {
       <h1 className="text-2xl font-bold mb-4">Attendee List by Events</h1>
 
       {/* Event-wise Attendee List */}
-      {events.map((event) => (
-        <div key={event._id} className="mb-6">
+      {event&& events.map((event) => (
+        <div key={`${event._id}-${Math.random()}`} className="mb-6">
           {/* Event Details */}
           <h2 className="text-xl font-semibold mb-2">
             Event: {event.title} ({event.category})
@@ -87,13 +87,13 @@ const AttendeeList = () => {
                 <th className="border px-4 py-2">Name</th>
                 <th className="border px-4 py-2">Email</th>
                 {/* <th className="border px-4 py-2">Phone</th> */}
-                {/* <th className="border px-4 py-2">Payment Status</th> */}
+                {/* <th className="border px-4 py-2">Payment S tatus</th> */}
               </tr>
             </thead>
             <tbody>
               {event.attendees.length > 0 ? (
                 event.attendees.map((attendee) => (
-                  <tr key={attendee._id}>
+                  <tr key={`${attendee._id}-${Math.random()}`}>
                     <td className="border px-4 py-2">{attendee.username}</td>
                     <td className="border px-4 py-2">{attendee.email}</td>
                     {/* <td className="border px-4 py-2">{attendee.phone}</td> */}
@@ -137,128 +137,3 @@ const AttendeeList = () => {
 
 export default AttendeeList;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import { CSVLink } from "react-csv";
-// import api from "../axios";
-
-// const AttendeeList = () => {
-//   const [attendees, setAttendees] = useState([]);
-//   const [filter, setFilter] = useState("");
-//   const [search, setSearch] = useState("");
-
-//   useEffect(() => {
-//     fetchAttendees();
-//   }, [filter, search]);
-
-//   const fetchAttendees = async () => {
-//     try {
-//       // Fetch events organized by the current user
-//       const response = await api.get("/ticket/getorgid");
-//       console.log("Events:", response.data);
-  
-//       // Ensure response.data contains expected structure
-//       if (!response.data || response.data.length === 0) {
-//         setAttendees([]);
-//         return;
-//       }
-  
-//       // Fetch attendee details for each candidate in the event
-//       const data = await Promise.all(
-//         response.data.flatMap((event) =>
-//           event.candidates.map(async (candidateId) => {
-//             const candidateResponse = await api.post("/auth/getbyid", {
-//               userid: candidateId,
-//             });
-//             return candidateResponse.data.user;
-//           })
-//         )
-//       );
-  
-//       console.log("Candidates:", data); 
-//       setAttendees(data); // Store candidate details in state
-//     } catch (err) {
-//       console.error("Error fetching attendees:", err);
-//     }
-//   };
-  
-  
-
-//   return (
-//     <div className="p-4">
-
-//       {/* Filters */}
-//       <div className="mb-4">
-//         <select
-//           value={filter}
-//           onChange={(e) => setFilter(e.target.value)}
-//           className="border p-2 mr-2" 
-//         >
-//           <option value="">All</option>
-//           <option value="Paid">Paid</option>
-//           <option value="Pending">Pending</option>
-//         </select>
-//         <input
-//           type="text"
-//           placeholder="Search by name"
-//           value={search}
-//           onChange={(e) => setSearch(e.target.value)}
-//           className="border p-2"
-//         />
-//       </div>
-//       <h1 className="text-2xl font-bold mb-4">Attendee List: </h1>
-
-//       {/* Table */}
-//       <table className="table-auto border-collapse w-full mb-4">
-//         <thead>
-//           <tr>
-//             <th className="border px-4 py-2">Name</th>
-//             <th className="border px-4 py-2">Email</th>
-//             <th className="border px-4 py-2">Phone</th>
-//             <th className="border px-4 py-2">Ticket Type</th>
-//             <th className="border px-4 py-2">Payment Status</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {attendees.map((attendee) => (
-//             <tr key={attendee._id}>
-//               <td className="border px-4 py-2">{attendee.username}</td>
-//               <td className="border px-4 py-2">{attendee.email}</td>
-//               <td className="border px-4 py-2">{attendee.phone}</td>
-//               <td className="border px-4 py-2">{attendee.ticketType}</td>
-//               <td className="border px-4 py-2">{attendee.paymentStatus}</td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-
-//       {/* Export Button */}
-//       <CSVLink
-//         data={attendees}
-//         filename="attendees.csv"
-//         className="bg-blue-500 text-white px-4 py-2 rounded"
-//       >
-//         Export as CSV
-//       </CSVLink>
-//     </div>
-//   );
-// };
-
-// export default AttendeeList;
