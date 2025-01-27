@@ -16,6 +16,8 @@ import Dashboard from './pages/Dashboard';
 import ManageRegistrations from './componastion/handleTransferTicket';
 import TransferTicket from './componastion/TransferTicket';
 import AttendeeList from './componastion/AttendeeList';
+import EventSchedule from './componastion/EventSchedule';
+import AddSessionForm from './componastion/AddSessionForm';
 
 // Import the new ticket booking and payment components
 // import TicketBooking from './components/TicketBooking';
@@ -44,6 +46,8 @@ const App = () => {
             <Route path="/ticket/transfer/:ticketId" element={<TransferTicket />} />
 
             <Route path="/cancelTicket/:id" element={<ManageRegistrations />} ></Route>
+            <Route path="/Schedule" element={<EventSchedule />} ></Route>
+            <Route path="/Schedule/:id" element={<AddSessionForm />} ></Route>
 
             {/* Add Ticket Booking and Payment Routes
             <Route path="/ticket-booking" element={<TicketBooking />} />

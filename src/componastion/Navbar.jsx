@@ -52,6 +52,12 @@ const Navbar = () => {
                     >
                         Search
                     </Link>
+                    <Link
+                        to="/Schedule"
+                        className="text-lg hover:text-gray-400 transition duration-300"
+                    >
+                        Schedule
+                    </Link>
                     {user && user.role === 'organizers' ?
                         (
 

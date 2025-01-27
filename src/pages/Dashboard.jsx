@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../axios";
 import { Link } from "react-router-dom";
+import EventSchedule from "../componastion/EventSchedule";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -176,8 +177,15 @@ const Dashboard = () => {
                     >
                       Transfer
                     </Link>
+                    {/* <Link
+                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                      to={`/Schedule/${event._id}`}
+                    >
+                     Add Schedule
+                    </Link> */}
                   </div>
-                </div>
+                  {/* <EventSchedule eventId={event._id} /> */}
+                  </div>
               );
             })
           ) : (
