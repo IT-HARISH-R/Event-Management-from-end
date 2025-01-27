@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import api from "../axios";
+import EventAnalytics from "./EventAnalytics";
 
 const AttendeeList = () => {
   const [events, setEvents] = useState([]);
@@ -19,7 +20,7 @@ const AttendeeList = () => {
 
       if (!response.data || response.data.length === 0) {
         setEvents([]);
-        return;
+        return; 
       }
 
       // Fetch attendees for each event
@@ -31,8 +32,8 @@ const AttendeeList = () => {
                 userid: candidateId,
               });
               return candidateResponse.data.user;
-            })
-          );
+            })  
+          ); 
           return { ...event, attendees };
         })
       );
@@ -106,9 +107,11 @@ const AttendeeList = () => {
                   </td>
                 </tr>
               )}
+              
             </tbody>
           </table>
-        </div>
+          <EventAnalytics event={event} />
+          </div>
       ))}
 
       {/* Export Button */}
