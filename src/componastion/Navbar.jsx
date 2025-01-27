@@ -52,12 +52,24 @@ const Navbar = () => {
                     >
                         Search
                     </Link>
-                    <Link
-                        to="/dashboard"
-                        className="text-lg hover:text-gray-400 transition duration-300"
-                    >
-                        Dashboard
-                    </Link>
+                    {user && user.role === 'organizers' ?
+                        (
+
+                            <Link
+                                to="/organizers/dashboard"
+                                className="text-lg hover:text-gray-400 transition duration-300"
+                            >
+                                Dashboard
+                            </Link>
+                        )
+                        : (
+                            <Link
+                                to="/dashboard"
+                                className="text-lg hover:text-gray-400 transition duration-300"
+                            >
+                                Dashboard
+                            </Link>
+                        )}
                     {user && user.role === 'organizers' && (
                         <Link
                             to="/EventForm"
@@ -119,12 +131,24 @@ const Navbar = () => {
                             >
                                 EventForm
                             </Link>
-                            <Link
-                                to="/dashboard"
-                                className="text-lg hover:text-gray-400 transition duration-300"
-                            >
-                                Dashboard
-                            </Link>
+                            {user.role === 'organizers' ?
+                                (
+
+                                    <Link
+                                        to="/organizers/dashboard"
+                                        className="text-lg hover:text-gray-400 transition duration-300"
+                                    >
+                                        Dashboard
+                                    </Link>
+                                )
+                                : (
+                                    <Link
+                                        to="/dashboard"
+                                        className="text-lg hover:text-gray-400 transition duration-300"
+                                    >
+                                        Dashboard
+                                    </Link>
+                                )}
                         </>
                     )}
                     {!user ? (

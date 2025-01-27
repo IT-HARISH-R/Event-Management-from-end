@@ -15,6 +15,7 @@ import BookingPage from './pages/BookingPage ';
 import Dashboard from './pages/Dashboard';
 import ManageRegistrations from './componastion/handleTransferTicket';
 import TransferTicket from './componastion/TransferTicket';
+import AttendeeList from './componastion/AttendeeList';
 
 // Import the new ticket booking and payment components
 // import TicketBooking from './components/TicketBooking';
@@ -23,15 +24,16 @@ import TransferTicket from './componastion/TransferTicket';
 const App = () => {
   return (
     <Provider store={store}>
-      <Router>
+      <Router> 
         <Navbar />
         <div className="container mx-auto">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/EventForm" element={<EventForm />} />
+            <Route path="/EventForm" element={<EventForm />} /> 
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/organizers/dashboard" element={<AttendeeList />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/search" element={<Search />} />
             
