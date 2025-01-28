@@ -42,7 +42,7 @@ const EventDetails = () => {
             <h1 className="text-3xl font-bold mb-6">{event.title}</h1>
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <img
-                src={`https://event-management-backend-6ifk.onrender.com${event.images[0].replace("/opt/render/project/src", "")}`}
+                src={`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "")}`}
                 alt={event.title}
                 className="w-full h-48 object-cover rounded-md mb-4"
               />
@@ -70,7 +70,7 @@ const EventDetails = () => {
               <div className="mt-6">
                 <h2 className="text-xl font-semibold lg:text-4xl m-10">Event Video</h2>
                 <video controls className="w-full mt-2">
-                  <source src={`http://localhost:3000/${event.videos[0]}`} type="video/mp4" />
+                  <source src={`https://event-management-backend-6ifk.onrender.com/${event.videos[0].replace("/opt/render/project/src", "")}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
