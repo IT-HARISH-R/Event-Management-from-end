@@ -1,7 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../axios';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const EventForm = () => {
+
+    const user = useSelector((state) => state.user.user); // Get user from Redux store
+    const navegater = useNavigate();
+    // console.log(user.role)
+    console.log(user)
+    useEffect(() => {
+        if (!user) {
+            navegater("/");
+        }
+        if (user && !user.role === 'organizers') {
+            navegater("/");
+        }
+    }, [])
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',

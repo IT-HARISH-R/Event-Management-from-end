@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../axios';
+import { useDispatch } from 'react-redux';
+import { login } from '../Slice/userSlice ';
 
 const Home = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await api.get('/event'); 
-        setEvents(response.data); 
+        const response = await api.get('/event');
+        setEvents(response.data);
         console.log(response.data);
       } catch (err) {
         setError('Error fetching events');
@@ -23,6 +27,30 @@ const Home = () => {
 
     fetchEvents();
   }, []);
+
+
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('Token missing. Please log in.');
+        }
+
+        const response = await api.get('/auth/profile');
+        setProfile(response.data);
+        dispatch(login(response.data));
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [dispatch]);
+
 
   if (loading) return <div className="p-4">Loading events...</div>;
   if (error) return <div className="p-4 text-red-500">{error}</div>;
@@ -37,8 +65,8 @@ const Home = () => {
         ) : (
           events.map((event) => {
             // Calculate the lowest price or display the price of the first ticket type
-            const ticketPrice = event.ticketTypes.length > 0 
-              ? Math.min(...event.ticketTypes.map((type) => type.price)) 
+            const ticketPrice = event.ticketTypes.length > 0
+              ? Math.min(...event.ticketTypes.map((type) => type.price))
               : 'N/A'; // If no ticket types, display 'N/A'
 
             return (

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import api from '../axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const AddSessionForm = ({ refreshSchedule }) => {
+const AddSessionForm = () => {
     const params = useParams();
     const eventId = params.id;
+    const navigater = useNavigate()
 
     const [session, setSession] = useState({
         sessionTitle: '',
@@ -41,7 +42,12 @@ const AddSessionForm = ({ refreshSchedule }) => {
         try {
             await api.post('/schedule', { ...session, eventId });
             alert('Session created successfully');
-            // refreshSchedule(); // Reload the schedule
+            navigater("/")
+            const startTime = session.startTime
+            const endTime = session.endTime
+            await api.post('/notify', { eventId, startTime, endTime })
+
+
         } catch (err) {
             console.error('Error adding session:', err);
         }
@@ -77,7 +83,7 @@ const AddSessionForm = ({ refreshSchedule }) => {
                 className="border p-2 mb-2 w-full"
                 required
             />
-            
+
             <div className="border p-4 mb-2 rounded">
                 <h4 className="text-lg font-bold mb-2">Speakers</h4>
                 <div className="flex gap-2 mb-2">

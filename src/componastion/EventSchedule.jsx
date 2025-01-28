@@ -55,7 +55,7 @@ const EventSchedule = ({ eventId }) => {
             day: 'Day',
           }}
           height="auto"
-          className="p-4"
+          // className="p-4"
         />
       </div>
     </div>

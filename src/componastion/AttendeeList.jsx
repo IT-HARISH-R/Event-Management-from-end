@@ -10,7 +10,7 @@ const AttendeeList = () => {
   const navigate = useNavigate()
   console.log(":::::::::::::", !user.role === 'organizers')
 
-  if (!user.role === 'organizers') {
+  if (user.role === 'user') {
     navigate("/")
   }
   const [events, setEvents] = useState([]);
@@ -71,7 +71,7 @@ const AttendeeList = () => {
             </h2>
             <Link
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-              to={`/Schedule/${event._id}`}
+              to={`/schedule/${event._id}`}
             >
               Add Schedule
             </Link>
@@ -81,7 +81,7 @@ const AttendeeList = () => {
             <span className="font-semibold">Date:</span> {new Date(event.date).toDateString()}
           </p>
 
-          {/* Attendee Table */}
+          {/* Attendee Table */} 
           <div className="overflow-x-auto">
             <table className="table-auto border-collapse w-full text-left text-sm">
               <thead>

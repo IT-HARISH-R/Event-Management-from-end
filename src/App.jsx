@@ -18,6 +18,9 @@ import TransferTicket from './componastion/TransferTicket';
 import AttendeeList from './componastion/AttendeeList';
 import EventSchedule from './componastion/EventSchedule';
 import AddSessionForm from './componastion/AddSessionForm';
+import AdminDashboard from './pages/AdminDashbord';
+import SupportInquiryForm from './componastion/SupportInquiryForm';
+import AdminSupportDashboard from './componastion/AdminSupportDashboard';
 
 // Import the new ticket booking and payment components
 // import TicketBooking from './components/TicketBooking';
@@ -31,11 +34,12 @@ const App = () => {
         <div className="container mx-auto">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/EventForm" element={<EventForm />} /> 
+            <Route path="/eventform" element={<EventForm />} /> 
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/organizers/dashboard" element={<AttendeeList />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/search" element={<Search />} />
             
@@ -46,9 +50,11 @@ const App = () => {
             <Route path="/ticket/transfer/:ticketId" element={<TransferTicket />} />
 
             <Route path="/cancelTicket/:id" element={<ManageRegistrations />} ></Route>
-            <Route path="/Schedule" element={<EventSchedule />} ></Route>
-            <Route path="/Schedule/:id" element={<AddSessionForm />} ></Route>
+            <Route path="/schedule" element={<EventSchedule />} ></Route>
+            <Route path="/schedule/:id" element={<AddSessionForm />} ></Route>
 
+            <Route path="/inquiryform" element={<SupportInquiryForm />} ></Route>
+            <Route path="/inquiryreplay" element={<AdminSupportDashboard />} ></Route>
             {/* Add Ticket Booking and Payment Routes
             <Route path="/ticket-booking" element={<TicketBooking />} />
             <Route path="/ticket-payment" element={<TicketPayment />} /> */}
