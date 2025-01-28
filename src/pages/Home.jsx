@@ -72,10 +72,11 @@ const Home = () => {
             return (
               <div key={event._id} className="relative pb-20 bg-white p-6 rounded-lg shadow-lg">
                 <img
-                  src={`http://localhost:3000/${event.images[0]}`}
+                  src={`https://event-management-backend-6ifk.onrender.com${event.images[0].replace("/opt/render/project/src", "")}`}
                   alt={event.title}
                   className="w-full h-48 object-cover rounded-md mb-4"
                 />
+
                 <h2 className="text-xl text-center lg:text-3xl font-semibold text-gray-800">{event.title}</h2>
                 <div className="mt-4">
                   <p className="text-sm text-gray-500 lg:text-2xl">Date: {new Date(event.date).toLocaleDateString()}</p>

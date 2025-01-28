@@ -13,8 +13,8 @@ const Search = () => {
 
   // Handle search function
   const handleSearch = async () => {
-    
-    if(filterType === 'price'){
+
+    if (filterType === 'price') {
       setSearch(`${minprice}-${maxprice}`)
       console.log(search)
     }
@@ -52,32 +52,32 @@ const Search = () => {
 
         <div className="flex space-x-4">
 
-        {filterType === 'price' ? (
-  <div>
-    <input
-      type="text"
-      value={minprice}
-      onChange={(e) => setminprice(e.target.value)}
-      placeholder="Min Price"
-      className="p-2 border border-gray-300 rounded-md flex-1"
-    />
-    <input
-      type="text"
-      value={maxprice}
-      onChange={(e) => setmaxprice(e.target.value)}
-      placeholder="Max Price"
-      className="p-2 border border-gray-300 rounded-md flex-1"
-    />
-  </div>
-) : (
-  <input
-    type="text"
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    placeholder="Search for events"
-    className="p-2 border border-gray-300 rounded-md flex-1"
-  />
-)}
+          {filterType === 'price' ? (
+            <div>
+              <input
+                type="text"
+                value={minprice}
+                onChange={(e) => setminprice(e.target.value)}
+                placeholder="Min Price"
+                className="p-2 border border-gray-300 rounded-md flex-1"
+              />
+              <input
+                type="text"
+                value={maxprice}
+                onChange={(e) => setmaxprice(e.target.value)}
+                placeholder="Max Price"
+                className="p-2 border border-gray-300 rounded-md flex-1"
+              />
+            </div>
+          ) : (
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search for events"
+              className="p-2 border border-gray-300 rounded-md flex-1"
+            />
+          )}
 
 
 
@@ -121,10 +121,11 @@ const Search = () => {
               data.map((event) => (
                 <div key={event._id} className="relative pb-20 bg-white p-6 rounded-lg shadow-lg">
                   <img
-                    src={`http://localhost:3000/${event.images[0]}`}
+                    src={`https://event-management-backend-6ifk.onrender.com${event.images[0].replace("/opt/render/project/src", "")}`}
                     alt={event.title}
                     className="w-full h-48 object-cover rounded-md mb-4"
                   />
+
                   <h2 className="text-xl text-center lg:text-3xl font-semibold text-gray-800">{event.title}</h2>
                   <div className="mt-4">
                     <p className="text-sm text-gray-500 lg:text-2xl">Date: {new Date(event.date).toLocaleDateString()}</p>

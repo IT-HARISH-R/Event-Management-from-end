@@ -61,7 +61,7 @@ const BookingPage = () => {
             }
 
             const options = {
-                key: 'rzp_test_ymKyS0BIhx3F7y',  
+                key: 'rzp_test_ymKyS0BIhx3F7y',
                 amount: data.amount,
                 currency: 'INR',
                 name: event.title,
@@ -70,7 +70,7 @@ const BookingPage = () => {
                 handler: async (response) => {
                     // Handle successful payment here
                     try {
-                        console.log("----------",response)
+                        console.log("----------", response)
                         await api.post('/ticket/handlePaymentSuccess', {
                             paymentId: response.razorpay_payment_id,
                             orderId: data.orderId,
@@ -126,10 +126,11 @@ const BookingPage = () => {
                     <h1 className="text-3xl font-bold mb-6">Book Tickets for {event.title}</h1>
                     <div className="bg-white p-6 rounded-lg shadow-lg">
                         <img
-                            src={`http://localhost:3000/${event.images[0]}`}
+                            src={`https://event-management-backend-6ifk.onrender.com${event.images[0].replace("/opt/render/project/src", "")}`}
                             alt={event.title}
                             className="w-full h-48 object-cover rounded-md mb-4"
                         />
+
                         <p className="text-gray-600">{event.description}</p>
                         <div className="mt-4">
                             <p className="text-sm text-gray-500">Date: {new Date(event.date).toLocaleDateString()}</p>
