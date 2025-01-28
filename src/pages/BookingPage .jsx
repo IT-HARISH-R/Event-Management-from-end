@@ -78,7 +78,7 @@ const BookingPage = () => {
                             event: id
                         });
                         alert('Booking Successful!');
-                        navigate('/success'); // Navigate to success page
+                        navigate('/'); // Navigate to success page
                     } catch (err) {
                         console.error('Error handling payment success:', err);
                         setError('Error completing payment process');

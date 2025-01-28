@@ -62,16 +62,16 @@ const Navbar = () => {
                         (<>
 
                             <Link
-                                to="/organizers/dashboard"
-                                className="text-lg hover:text-gray-400 transition duration-300"
-                            >
-                                Dashboard
-                            </Link>
-                            <Link
                                 to="/eventform"
                                 className="text-lg hover:text-gray-400 transition duration-300"
                             >
                                 EventForm
+                            </Link>
+                            <Link
+                                to="/organizers/dashboard"
+                                className="text-lg hover:text-gray-400 transition duration-300"
+                            >
+                                Dashboard
                             </Link>
                         </>
                         )}

@@ -52,31 +52,20 @@ const EventDetails = () => {
                 <p className="text-sm text-gray-500 lg:text-3xl">Time: {event.time}</p>
                 <p className="text-sm text-gray-500 lg:text-3xl">Location: {event.location}</p>
               </div>
-                 {/* Right Column - Ticket Selection */}
-          <div className="lg:w-1/2 p-4">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <h2 className="text-xl font-semibold lg:text-4xl mb-4">Ticket Types</h2>
-              <select
-                value={selectedTicket}
-                onChange={handleTicketChange}
-                className="block w-full px-4 py-2 text-lg border rounded-md mb-4"
-              >
-                <option value="">Select Ticket Type</option>
-                {event.ticketTypes.map((ticket) => (
-                  <option key={ticket._id} value={ticket.type}>
-                    {ticket.type} - ₹{ticket.price} (Available: {ticket.quantity})
-                  </option>
-                ))}
-              </select>
-              <div className="mt-6">
+              <div>
+                {event.ticketTypes.map((ticket) => {
+                  return <p className="text-sm text-gray-500 lg:text-3xl">{ticket.type} - ₹{ticket.price} -  Available: {ticket.quantity} </p>
+                })}
+              </div>
+
+              {/* Right Column - Ticket Selection */}
+              <div className="lg:w-1/2 p-4">
                 <Link to={`/booking/${id}`}>
                   <button className="block mx-auto w-[70%] lg:text-2xl bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
                     Book Now
-                  </button>
+                  </button> 
                 </Link>
               </div>
-            </div>
-          </div>
               <div className="mt-6">
                 <h2 className="text-xl font-semibold lg:text-4xl m-10">Event Video</h2>
                 <video controls className="w-full mt-2">
@@ -87,7 +76,7 @@ const EventDetails = () => {
             </div>
           </div>
 
-       
+
         </div>
       )}
     </div>
