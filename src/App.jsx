@@ -21,6 +21,9 @@ import AddSessionForm from './componastion/AddSessionForm';
 import AdminDashboard from './pages/AdminDashbord';
 import SupportInquiryForm from './componastion/SupportInquiryForm';
 import AdminSupportDashboard from './componastion/AdminSupportDashboard';
+import PassworeForgot from './pages/PassworeForgot';
+import ResetPassword from './pages/ResetPassword';
+
 
 // Import the new ticket booking and payment components
 // import TicketBooking from './components/TicketBooking';
@@ -42,6 +45,9 @@ const App = () => {
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/search" element={<Search />} />
+
+            <Route path="/forgot-password" element={<PassworeForgot />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
             
             {/* Add Route for Event Details */}
             <Route path="/event/:id" element={<EventDetails />} />

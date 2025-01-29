@@ -108,14 +108,7 @@ const Navbar = () => {
                             </Link>
                         </>
                     )}
-                    {/* {user && user.role === 'organizers' && (
-                        <Link
-                            to="/EventForm"
-                            className="text-lg hover:text-gray-400 transition duration-300"
-                        >
-                            EventForm
-                        </Link>
-                    )} */}
+                   
                 </div>
 
                 {/* User Profile or Login */}

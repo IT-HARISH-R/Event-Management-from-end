@@ -225,15 +225,8 @@ const EventForm = () => {
                                 <option value="">Select Type</option>
                                 <option value="General Admission">General Admission</option>
                                 <option value="VIP">VIP</option>
-                                {/* <option value="Early Bird">Early Bird</option> */}
                             </select>
-                            {/* <input
-                                type="text"
-                                value={ticket.type}
-                                onChange={(e) => handleTicketChange(index, 'type', e.target.value)}
-                                className="w-full border border-gray-300 rounded-md p-2"
-                                required
-                            /> */}
+                           
                         </div>
                         <div className="mb-2">
                             <label className="block text-gray-700 font-medium mb-1">Price</label>

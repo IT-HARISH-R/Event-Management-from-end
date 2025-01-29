@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../axios'; // Ensure the axios instance is correctly configured
+import { Link, useNavigate } from 'react-router-dom';
+import api from '../axios';  
 import { useDispatch } from 'react-redux';
 import { login } from '../Slice/userSlice ';
-// import { setUser } from '../Slice/userSlice ';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -106,11 +105,13 @@ const Login = () => {
             required
           />
         </div>
+        <Link to='/forgot-password'
+          className='text-blue-600'>Forgot Password</Link>
 
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-2 rounded-md text-white ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-400'
+          className={`w-full mt-4 py-2 rounded-md text-white ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-400'
             } transition duration-300`}
         >
           {loading ? 'Logging in...' : 'Login'}
