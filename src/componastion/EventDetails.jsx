@@ -14,6 +14,7 @@ const EventDetails = () => {
       try {
         const response = await api.get(`/event/${id}`);
         setEvent(response.data);
+        console.log(response.data)
       } catch (err) {
         setError('Error fetching event details');
         console.error(err);
@@ -42,7 +43,7 @@ const EventDetails = () => {
             <h1 className="text-3xl font-bold mb-6">{event.title}</h1>
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <img
-                src={`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "")}`}
+                src={event.images[0].url}
                 alt={event.title}
                 className="w-full h-48 object-cover rounded-md mb-4"
               />
@@ -66,11 +67,12 @@ const EventDetails = () => {
                     Book Now
                   </button>
                 </Link>
-              </div>
+              </div> 
               <div className="mt-6">
                 <h2 className="text-xl font-semibold lg:text-4xl m-10">Event Video</h2>
                 <video controls className="w-full mt-2">
-                  <source src={`https://event-management-backend-6ifk.onrender.com/${event.videos[0].replace("/opt/render/project/src", "")}`} type="video/mp4" />
+                  <source
+                    src={event.videos[0].url} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>

@@ -102,7 +102,7 @@ const EventForm = () => {
             });
             console.log('Event created successfully:', response.data);
             alert('Event created successfully');
-            navegater("/")
+            // navegater("/")
         } catch (error) {
             console.error('Error creating event:', error);
             alert('Error creating event');

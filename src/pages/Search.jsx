@@ -13,14 +13,19 @@ const Search = () => {
 
   // Handle search function
   const handleSearch = async () => {
+    let searchQuery = search;
 
+    // If filter type is price, update search value accordingly
     if (filterType === 'price') {
-      setSearch(`${minprice}-${maxprice}`)
-      console.log(search)
+      if (!minprice || !maxprice) {
+        setError('Please enter valid min and max prices.');
+        return; // Stop the function from proceeding
+      }
+      searchQuery = `${minprice}-${maxprice}`;  // Update search query directly
     }
 
-    if (!search || !filterType) {
-      alert("Please enter a search term and select a filter type.");
+    if (!searchQuery || !filterType) {
+      setError("Please enter a search term and select a filter type.");
       return;
     }
 
@@ -29,12 +34,17 @@ const Search = () => {
 
     try {
       // Prepare the query parameters for GET request
-      const queryParams = { search, filterType };
+      const queryParams = { search: searchQuery, filterType };
 
       // Send GET request with query parameters
       const response = await api.get('/event/filter', { params: queryParams });
 
-      setData(response.data); // Set response data
+      // Check if no data is returned
+      if (response.data.length === 0) {
+        setError('No events found for the selected criteria.');
+      } else {
+        setData(response.data); // Set response data
+      }
     } catch (error) {
       console.error('Error fetching events:', error);
       setError('Failed to fetch events. Please try again later.'); // Set error state
@@ -53,16 +63,16 @@ const Search = () => {
         <div className="flex space-x-4">
 
           {filterType === 'price' ? (
-            <div>
+            <div className="flex space-x-2">
               <input
-                type="text"
+                type="number"
                 value={minprice}
                 onChange={(e) => setminprice(e.target.value)}
                 placeholder="Min Price"
                 className="p-2 border border-gray-300 rounded-md flex-1"
               />
               <input
-                type="text"
+                type="number"
                 value={maxprice}
                 onChange={(e) => setmaxprice(e.target.value)}
                 placeholder="Max Price"
@@ -78,8 +88,6 @@ const Search = () => {
               className="p-2 border border-gray-300 rounded-md flex-1"
             />
           )}
-
-
 
           <select
             value={filterType}
@@ -114,14 +122,14 @@ const Search = () => {
           <h1 className="text-3xl font-bold mb-6">Events</h1>
 
           {/* Display events */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6">
             {data.length === 0 ? (
               <div className="text-center col-span-full">No events available</div>
             ) : (
               data.map((event) => (
                 <div key={event._id} className="relative pb-20 bg-white p-6 rounded-lg shadow-lg">
                   <img
-                    src={`https://event-management-backend-6ifk.onrender.com${event.images[0].replace("/opt/render/project/src", "")}`}
+                    src={event.images[0].url}
                     alt={event.title}
                     className="w-full h-48 object-cover rounded-md mb-4"
                   />
@@ -130,11 +138,11 @@ const Search = () => {
                   <div className="mt-4">
                     <p className="text-sm text-gray-500 lg:text-2xl">Date: {new Date(event.date).toLocaleDateString()}</p>
                     <p className="text-sm text-gray-500 lg:text-2xl">Location: {event.location}</p>
-                    <p className="text-sm text-gray-500 lg:text-2xl">Price: ₹{event.ticketPrice}</p>
+                    <p className="text-sm text-gray-500 lg:text-2xl">Price: ₹{event.ticketTypes[0].price}</p>
                   </div>
                   <Link
                     to={`/event/${event._id}`}
-                    className="absolute bottom-6 left-[50%] translate-x-[-50%]  bg-blue-500 text-white py-2 px-2 rounded-md hover:bg-blue-400 transition duration-300 text-center"
+                    className="absolute bottom-6 left-[50%] translate-x-[-50%] bg-blue-500 text-white py-2 px-2 rounded-md hover:bg-blue-400 transition duration-300 text-center"
                   >
                     View Details
                   </Link>

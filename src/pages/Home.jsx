@@ -9,6 +9,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [profile, setProfile] = useState(null);
+  const [ismd, setismd] = useState(true)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,8 +28,6 @@ const Home = () => {
 
     fetchEvents();
   }, []);
-
-
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -51,7 +50,6 @@ const Home = () => {
     fetchProfile();
   }, [dispatch]);
 
-
   if (loading) return <div className="p-4">Loading events...</div>;
   if (error) return <div className="p-4 text-red-500">{error}</div>;
 
@@ -63,38 +61,39 @@ const Home = () => {
         {events.length === 0 ? (
           <div className="text-center col-span-full">No events available</div>
         ) : (
-          events.map((event) => {
-            // Calculate the lowest price or display the price of the first ticket type
-            const ticketPrice = event.ticketTypes.length > 0
-              ? Math.min(...event.ticketTypes.map((type) => type.price))
-              : 'N/A'; // If no ticket types, display 'N/A'
+          events
+            .filter(event => event.approvalStatus === 'Approved') // Filter approved events
+            .map((event) => {
+              const ticketPrice =
+                event.ticketTypes.length > 0
+                  ? Math.min(...event.ticketTypes.map((type) => type.price))
+                  : 'N/A';
 
-            return (
-              <div key={event._id} className="relative pb-20 bg-white p-6 rounded-lg shadow-lg">
-                {console.log(`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "") }}`)}
-                {console.log(`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "").replace(/\\/g, "/")}`)}
 
-                <img
-                src={`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "")}`}
-                alt={event.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
 
-                <h2 className="text-xl text-center lg:text-3xl font-semibold text-gray-800">{event.title}</h2>
-                <div className="mt-4">
-                  <p className="text-sm text-gray-500 lg:text-2xl">Date: {new Date(event.date).toLocaleDateString()}</p>
-                  <p className="text-sm text-gray-500 lg:text-2xl">Location: {event.location}</p>
-                  <p className="text-sm text-gray-500 lg:text-2xl">Price: ₹{ticketPrice}</p>
+              return (
+                <div key={event._id} className="relative pb-20 bg-white p-6 rounded-lg shadow-lg">
+                  <img
+                    src={event.images[0].url}
+                    alt={event.title}
+                    className="w-full h-48 object-cover rounded-md mb-4"
+                  />
+
+                  <h2 className="text-xl text-center lg:text-3xl font-semibold text-gray-800">{event.title}</h2>
+                  <div className="mt-4">
+                    <p className="text-sm text-gray-500 lg:text-2xl">Date: {new Date(event.date).toLocaleDateString()}</p>
+                    <p className="text-sm text-gray-500 lg:text-2xl">Location: {event.location}</p>
+                    <p className="text-sm text-gray-500 lg:text-2xl">Price: ₹{ticketPrice}</p>
+                  </div>
+                  <Link
+                    to={`/event/${event._id}`}
+                    className="absolute bottom-6 left-[50%] translate-x-[-50%] bg-blue-500 text-white py-2 px-2 rounded-md hover:bg-blue-400 transition duration-300 text-center"
+                  >
+                    View Details
+                  </Link>
                 </div>
-                <Link
-                  to={`/event/${event._id}`}
-                  className="absolute bottom-6 left-[50%] translate-x-[-50%] bg-blue-500 text-white py-2 px-2 rounded-md hover:bg-blue-400 transition duration-300 text-center"
-                >
-                  View Details
-                </Link>
-              </div>
-            );
-          })
+              );
+            })
         )}
       </div>
     </div>

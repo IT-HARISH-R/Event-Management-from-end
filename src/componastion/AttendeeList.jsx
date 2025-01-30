@@ -41,7 +41,7 @@ const AttendeeList = () => {
               return candidateResponse.data.user;
             })
           );
-          return { ...event, attendees };
+          return { ...event, attendees };  
         })
       );
 

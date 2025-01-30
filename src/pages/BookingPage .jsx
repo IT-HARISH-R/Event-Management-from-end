@@ -126,7 +126,7 @@ const BookingPage = () => {
                     <h1 className="text-3xl font-bold mb-6">Book Tickets for {event.title}</h1>
                     <div className="bg-white p-6 rounded-lg shadow-lg">
                         <img
-                            src={`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "")}`}
+                            src={event.images[0].url}
                             alt={event.title}
                             className="w-full h-48 object-cover rounded-md mb-4"
                         />
