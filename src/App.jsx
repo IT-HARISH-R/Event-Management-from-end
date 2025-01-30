@@ -24,6 +24,7 @@ import AdminSupportDashboard from './componastion/AdminSupportDashboard';
 import PassworeForgot from './pages/PassworeForgot';
 import ResetPassword from './pages/ResetPassword';
 import CreateOrganizer from './pages/CreateOrganizer';
+import UserAccounts from './componastion/UserAccounts';
 
 
 // Import the new ticket booking and payment components
@@ -52,7 +53,7 @@ const App = () => {
 
             <Route path="/createorganizer" element={<CreateOrganizer />} />
            
-            {/* <Route path="/useraccounts" element={<UserAccounts />} /> */}
+            <Route path="/useraccounts" element={<UserAccounts />} />
             
             {/* Add Route for Event Details */}
             <Route path="/event/:id" element={<EventDetails />} />
