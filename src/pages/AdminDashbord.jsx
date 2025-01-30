@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from "../axios";
 import EventAnalytics from "../componastion/EventAnalytics";
+import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
     const [events, setEvents] = useState([]);
@@ -21,7 +22,7 @@ const AdminDashboard = () => {
 
         fetchEvents();
     }, []);
-
+    console.log(events)
     const updateEventStatus = async (eventId, status) => {
         try {
             await api.put(`/admin/events/${eventId}/status`, { status });
@@ -37,12 +38,16 @@ const AdminDashboard = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="flex justify-between items-center py-4 px-6">
+                <h1 className="text-3xl font-semibold text-gray-800">Admin Dashboard</h1>
+                <Link to='/useraccounts' className="text-xl font-semibold text-blue-600 hover:text-blue-800 transition duration-200">View User Accounts</Link>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4">
                 {events.map(event => (
                     <div className=''>
 
-                        {event.approvalStatus === 'Rejected' && (
+                        {event.approvalStatus === 'Rejected' || event.approvalStatus === "Pending" && (
                             <div className='"bg-white shadow-md rounded-lg border border-gray-200 p-4'>
                                 <div className='flex justify-center'>
                                     <div>
@@ -85,13 +90,13 @@ const AdminDashboard = () => {
 
                                 <>
                                     <div className='flex justify-center'>
-                                    <div>
-                                        <h2 className="text-xl font-semibold mb-2">{event.title}</h2>
-                                        <p><strong>Description:</strong> {event.description}</p>
-                                        <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
-                                        <p><strong>Location:</strong> {event.location}</p>
-                                        <p><strong>Status:</strong> {event.approvalStatus}</p>
-                                    </div>
+                                        <div>
+                                            <h2 className="text-xl font-semibold mb-2">{event.title}</h2>
+                                            <p><strong>Description:</strong> {event.description}</p>
+                                            <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
+                                            <p><strong>Location:</strong> {event.location}</p>
+                                            <p><strong>Status:</strong> {event.approvalStatus}</p>
+                                        </div>
                                     </div>
                                     <div className="flex gap-2 md:gap-5 mt-4 justify-center">
                                         <button

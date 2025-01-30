@@ -101,6 +101,12 @@ const Navbar = () => {
                                 Dashboard
                             </Link>
                             <Link
+                                to="/createorganizer"
+                                className="text-lg hover:text-gray-400 transition duration-300"
+                            >
+                                Create Organizer
+                            </Link>
+                            <Link
                                 to="/inquiryreplay"
                                 className="text-lg hover:text-gray-400 transition duration-300"
                             >
@@ -108,7 +114,7 @@ const Navbar = () => {
                             </Link>
                         </>
                     )}
-                   
+
                 </div>
 
                 {/* User Profile or Login */}
@@ -156,12 +162,7 @@ const Navbar = () => {
                     </Link>
                     {user && (
                         <>
-                            <Link
-                                to="/EventForm"
-                                className="text-lg hover:text-gray-400 transition duration-300"
-                            >
-                                EventForm
-                            </Link>
+
 
                             {user.role === 'user' &&
                                 <>
@@ -181,13 +182,20 @@ const Navbar = () => {
                             }
                             {user.role === 'organizers' &&
                                 (
-
-                                    <Link
-                                        to="/organizers/dashboard"
-                                        className="text-lg hover:text-gray-400 transition duration-300"
-                                    >
-                                        Dashboard
-                                    </Link>
+                                    <>
+                                        <Link
+                                            to="/organizers/dashboard"
+                                            className="text-lg hover:text-gray-400 transition duration-300"
+                                        >
+                                            Dashboard
+                                        </Link>
+                                        <Link
+                                            to="/EventForm"
+                                            className="text-lg hover:text-gray-400 transition duration-300"
+                                        >
+                                            EventForm
+                                        </Link>
+                                    </>
                                 )}
 
                         </>
@@ -199,6 +207,12 @@ const Navbar = () => {
                                 className="text-lg hover:text-gray-400 transition duration-300"
                             >
                                 Dashboard
+                            </Link>
+                            <Link
+                                to="/createorganizer"
+                                className="text-lg hover:text-gray-400 transition duration-300"
+                            >
+                                Create Organizer
                             </Link>
                             <Link
                                 to="/inquiryreplay"

@@ -23,6 +23,7 @@ import SupportInquiryForm from './componastion/SupportInquiryForm';
 import AdminSupportDashboard from './componastion/AdminSupportDashboard';
 import PassworeForgot from './pages/PassworeForgot';
 import ResetPassword from './pages/ResetPassword';
+import CreateOrganizer from './pages/CreateOrganizer';
 
 
 // Import the new ticket booking and payment components
@@ -48,6 +49,10 @@ const App = () => {
 
             <Route path="/forgot-password" element={<PassworeForgot />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+            <Route path="/createorganizer" element={<CreateOrganizer />} />
+           
+            {/* <Route path="/useraccounts" element={<UserAccounts />} /> */}
             
             {/* Add Route for Event Details */}
             <Route path="/event/:id" element={<EventDetails />} />

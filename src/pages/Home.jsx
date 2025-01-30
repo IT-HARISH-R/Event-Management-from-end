@@ -71,12 +71,14 @@ const Home = () => {
 
             return (
               <div key={event._id} className="relative pb-20 bg-white p-6 rounded-lg shadow-lg">
-                {console.log(`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "")}`)}
+                {console.log(`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "") }}`)}
+                {console.log(`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "").replace(/\\/g, "/")}`)}
+
                 <img
-                  src={`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "")}`}
-                  alt={event.title}
-                  className="w-full h-48 object-cover rounded-md mb-4"
-                />
+                src={`https://event-management-backend-6ifk.onrender.com/${event.images[0].replace("/opt/render/project/src", "")}`}
+                alt={event.title}
+                className="w-full h-48 object-cover rounded-md mb-4"
+              />
 
                 <h2 className="text-xl text-center lg:text-3xl font-semibold text-gray-800">{event.title}</h2>
                 <div className="mt-4">

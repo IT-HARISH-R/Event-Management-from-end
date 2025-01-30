@@ -7,13 +7,15 @@ const EventForm = () => {
 
     const user = useSelector((state) => state.user.user); // Get user from Redux store
     const navegater = useNavigate();
+    const [loading, setLoading] = useState(false);
+
     // console.log(user.role)
     console.log(user)
     useEffect(() => {
         if (!user) {
             navegater("/");
         }
-        if (user && !user.role === 'organizers') {
+        if ( !user.role === 'organizers') {
             navegater("/");
         }
     }, [])
@@ -69,6 +71,7 @@ const EventForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         const data = new FormData();
         data.append('title', formData.title);
@@ -103,6 +106,8 @@ const EventForm = () => {
         } catch (error) {
             console.error('Error creating event:', error);
             alert('Error creating event');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -226,7 +231,7 @@ const EventForm = () => {
                                 <option value="General Admission">General Admission</option>
                                 <option value="VIP">VIP</option>
                             </select>
-                           
+
                         </div>
                         <div className="mb-2">
                             <label className="block text-gray-700 font-medium mb-1">Price</label>
@@ -269,11 +274,9 @@ const EventForm = () => {
             </div>
 
             <div>
-                <button
-                    type="submit"
-                    className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-                >
-                    Create Event
+                <button type="submit"
+                    className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" disabled={loading}>
+                    {loading ? 'Creating Event...' : 'Create Event'}
                 </button>
             </div>
         </form>
