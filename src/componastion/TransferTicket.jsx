@@ -10,8 +10,8 @@ const TransferTicket = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  console.log(ticketId)
-  console.log(newAttendeeEmail)
+  // console.log(ticketId)
+  // console.log(newAttendeeEmail)
 
   const handleTransfer = async (e) => {
     e.preventDefault();  

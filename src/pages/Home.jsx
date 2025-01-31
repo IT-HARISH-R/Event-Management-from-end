@@ -18,7 +18,7 @@ const Home = () => {
       try {
         const response = await api.get('/event');
         setEvents(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (err) {
         setError('Error fetching events');
         console.error(err);

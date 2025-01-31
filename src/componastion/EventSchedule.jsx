@@ -11,7 +11,7 @@ const EventSchedule = ({ eventId }) => {
     const fetchSchedule = async () => {
       try {
         const response = await api.get(`/schedule`);
-        console.log(response.data);
+        // console.log(response.data);
         setSchedule(response.data);
       } catch (err) {
         console.error('Error fetching schedule:', err);

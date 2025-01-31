@@ -13,7 +13,7 @@ const ManageRegistrations = () => {
       try {
         const response = await api.get('/auth/profile');
         setRegistrations(response.data.user);
-        console.log(response.data.user)
+        // console.log(response.data.user)
       } catch (err) {
         console.error("Error fetching registrations:", err);
       } finally {

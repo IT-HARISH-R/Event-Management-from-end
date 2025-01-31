@@ -14,10 +14,8 @@ const EventDetails = () => {
       try {
         const response = await api.get(`/event/${id}`);
         setEvent(response.data);
-        console.log(response.data);
       } catch (err) {
         setError('Error fetching event details');
-        console.error(err);
       } finally {
         setLoading(false);
       }

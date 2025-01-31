@@ -11,7 +11,7 @@ const EventForm = () => {
     const [loading, setLoading] = useState(false);
 
     // console.log(user.role)
-    console.log(user)
+    // console.log(user)
     useEffect(() => {
         if (!user) {
             navegater("/");
@@ -101,11 +101,9 @@ const EventForm = () => {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            console.log('Event created successfully:', response.data);
             toast.success('Event created successfully');
             navegater("/")
         } catch (error) {
-            console.error('Error creating event:', error);
             toast.error('Error creating event');
         } finally {
             setLoading(false);

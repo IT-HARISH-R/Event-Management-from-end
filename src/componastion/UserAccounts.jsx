@@ -10,7 +10,7 @@ const UserAccounts = () => {
         // Fetch user data from API
         const fetchUsers = async () => {
             const response = await api.get('/admin/getalluser'); // Replace with your API endpoint
-            console.log(response.data);
+            // console.log(response.data);
             setUsers(response.data);
         };
 

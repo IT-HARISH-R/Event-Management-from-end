@@ -32,8 +32,8 @@ const CreateOrganizer = () => {
 
         try {
             const response = await api.post("/admin/create-organizer", formData);
-            console.log(response.data)
-            console.log(response.data.status)
+            // console.log(response.data)
+            // console.log(response.data.status)
             if(response.data.status){
                 
                 toast.success("Organizer created successfully!");

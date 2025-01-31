@@ -7,7 +7,7 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    console.log("------------", user);
+    // console.log("------------", user);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 

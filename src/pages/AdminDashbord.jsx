@@ -103,7 +103,7 @@ return (
                         </div>
                     )}
 
-                    {/* Render event analytics if approved */}
+                    {/* Render event analytics if approved  */}
                     {event.approvalStatus === 'Approved' && event.candidates.length > 0 && <EventAnalytics event={event} />}
                 </div>
             ))}

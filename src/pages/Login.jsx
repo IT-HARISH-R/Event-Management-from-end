@@ -30,11 +30,11 @@ const Login = () => {
       if (response.data.status) {
         // Save the token to localStorage
         localStorage.setItem('token', response.data.token);
-        console.log(`Bearer ${localStorage.getItem('token')}`);
+        // console.log(`Bearer ${localStorage.getItem('token')}`);
 
         // Dispatch user data to Redux store
         // dispatch(setUser(response.data.user));
-        console.log(response.data)
+        // console.log(response.data)
         const fetchProfile = async () => {
           try {
             const token = localStorage.getItem('token');
@@ -49,7 +49,7 @@ const Login = () => {
             navigate('/');
           } catch (err) {
             setError(err.message || 'Failed to fetch profile.');
-            console.error(err);
+            // console.error(err);
           }
         };
         // Navigate to the profile page

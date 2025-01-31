@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 const AttendeeList = () => {
   const user = useSelector((state) => state.user.user); // Get user from Redux store
   const navigate = useNavigate()
-  console.log(":::::::::::::", !user.role === 'organizers')
 
   if (user.role === 'user') {
     navigate("/")
@@ -23,7 +22,6 @@ const AttendeeList = () => {
     try {
       // Fetch events organized by the current user
       const response = await api.get("/ticket/getorgid");
-      console.log("Events:", response.data);
 
       if (!response.data || response.data.length === 0) {
         setEvents([]);
@@ -45,7 +43,6 @@ const AttendeeList = () => {
         })
       );
 
-      console.log("Event Data with Attendees:", eventData);
       setEvents(eventData); // Store events with attendee data
     } catch (err) {
       console.error("Error fetching events:", err);
@@ -114,7 +111,6 @@ const AttendeeList = () => {
             <EventAnalytics event={event} />
             {/* Export Button */}
             <div className="text-center mt-4">
-              {console.log("oooooooooooooooooo", event)}
               <CSVLink
                 data={event.attendees.map((attendee) => ({
                   eventName: event.title,
