@@ -103,7 +103,7 @@ const EventForm = () => {
             });
             console.log('Event created successfully:', response.data);
             toast.success('Event created successfully');
-            // navegater("/")
+            navegater("/")
         } catch (error) {
             console.error('Error creating event:', error);
             toast.error('Error creating event');

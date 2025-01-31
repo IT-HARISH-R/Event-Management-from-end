@@ -134,7 +134,7 @@ const Dashboard = () => {
                   {/* Event Image */}
                   {event && (
                     <img
-                    src={`https://event-management-backend-6ifk.onrender.com${event.images[0].replace("/opt/render/project/src", "")}`}
+                    src={event.images[0].url}
                     alt={event.title}
                     className="w-full h-48 object-cover rounded-md mb-4"
                   />
