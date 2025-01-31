@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../axios';
+import { toast } from 'react-toastify';
 
 // API instance
 
@@ -27,7 +28,7 @@ const ResetPassword = () => {
             const response = await api.post(`/auth/reset-password/${token}`, { password });
 
             if (response.data.status) {
-                alert('Your password has been reset successfully.');
+                toast.success('Your password has been reset successfully.');
                 navigate("/login");
             }
         } catch (err) {

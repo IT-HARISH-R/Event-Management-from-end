@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../axios'; // Your API handler
 import Loading from './Loading';
+import { toast } from 'react-toastify';
 
 const ManageRegistrations = () => {
   const [registrations, setRegistrations] = useState([]);
@@ -29,25 +30,25 @@ const ManageRegistrations = () => {
         // Delete the ticket by ID (consistent with the backend)
         await api.delete(`/ticket/${ticketId}`);
         setRegistrations((prev) => prev.filter((registration) => registration._id !== ticketId));
-        alert("Ticket canceled successfully.");
+        toast.success("Ticket canceled successfully.");
       } catch (err) {
         console.error("Error canceling ticket:", err);
-        alert("An error occurred while canceling the ticket.");
+        toast.error("An error occurred while canceling the ticket.");
       }
     }
   };
 
   const handleTransferTicket = async (ticketId, newAttendeeEmail) => {
     if (!newAttendeeEmail) {
-      alert('Please enter a valid email.');
+      toast.error('Please enter a valid email.');
       return;
     }
     try {
       await api.post(`/ticket/transfer`, { ticketId, newAttendeeEmail });
-      alert('Ticket transferred successfully!');
+      toast.success('Ticket transferred successfully!');
     } catch (err) {
       console.error("Error transferring ticket:", err);
-      alert("An error occurred while transferring the ticket.");
+      toast.error("An error occurred while transferring the ticket.");
     }
   };
 

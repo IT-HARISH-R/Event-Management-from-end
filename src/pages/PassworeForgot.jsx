@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import api from '../axios';
+import { toast } from 'react-toastify';
 
 const PassworeForgot = () => {
 
@@ -25,7 +26,7 @@ const PassworeForgot = () => {
         try {
             const response = await api.post('/auth/forgotpassword', { email });
             if (response.data.status) {
-                alert('Check your email for the reset password link');
+                toast.success('Check your email for the reset password link');
                 navigate("/login");
             }
 

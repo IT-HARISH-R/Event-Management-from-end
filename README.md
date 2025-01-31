@@ -76,11 +76,11 @@ An event management platform built using the **MERN stack** that allows users to
 
 ## 🛠️ Deployment  
 - **Frontend**: Deployed on **[Netlify](https://guvi-event-management-project.netlify.app/)**  
-- **Backend**: Deployed on **Render**  
+- **Backend**: Deployed on **[Render](https://event-management-backend-6ifk.onrender.com)**  
 
 ---
 
 ## 👨‍💻 Author  
 **Harish**  
-- 🔗 [LinkedIn](https://www.lin/v1kedin.com/in/harishdeveloper/)  
+- 🔗 [LinkedIn](https://www.linkedin.com/in/harishdeveloper/)  
 - 🔗 [GitHub](https://github.com/IT-HARISH-R)  

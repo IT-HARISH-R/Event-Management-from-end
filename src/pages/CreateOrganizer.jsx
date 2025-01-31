@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import api from "../axios"; // Import your axios instance
+import { toast } from "react-toastify";
 
 const CreateOrganizer = () => {
     const user = useSelector((state) => state.user.user);
@@ -34,13 +35,14 @@ const CreateOrganizer = () => {
             console.log(response.data)
             console.log(response.data.status)
             if(response.data.status){
-                alert("Organizer created successfully!");
+                
+                toast.success("Organizer created successfully!");
                 navigate('/')
             }
             // setFormData({ name: "", email: "", password: "" });
         } catch (error) {
             console.error("Error creating organizer:", error);
-            alert("Failed to create organizer.");
+            toast.error("Failed to create organizer.");
         } finally {
             setLoading(false); // Stop loading
         }

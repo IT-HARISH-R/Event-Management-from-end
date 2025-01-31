@@ -25,7 +25,7 @@ import PassworeForgot from './pages/PassworeForgot';
 import ResetPassword from './pages/ResetPassword';
 import CreateOrganizer from './pages/CreateOrganizer';
 import UserAccounts from './componastion/UserAccounts';
-import Loading from './componastion/Loading';
+import { ToastContainer } from 'react-toastify';
 
 
 // Import the new ticket booking and payment components
@@ -35,6 +35,7 @@ import Loading from './componastion/Loading';
 const App = () => {
   return (
     <Provider store={store}>
+              <ToastContainer position='top-right' autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <Router> 
         <Navbar />
         <div className="container mx-auto">

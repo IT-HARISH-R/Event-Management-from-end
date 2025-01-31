@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../axios';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const EventForm = () => {
 
@@ -101,11 +102,11 @@ const EventForm = () => {
                 },
             });
             console.log('Event created successfully:', response.data);
-            alert('Event created successfully');
+            toast.success('Event created successfully');
             // navegater("/")
         } catch (error) {
             console.error('Error creating event:', error);
-            alert('Error creating event');
+            toast.error('Error creating event');
         } finally {
             setLoading(false);
         }

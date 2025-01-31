@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddSessionForm = () => {
     const params = useParams();
@@ -26,7 +27,7 @@ const AddSessionForm = () => {
             }));
             setNewSpeaker({ name: '', bio: '' });
         } else {
-            alert('Please provide both name and bio for the speaker.');
+            toast.error('Please provide both name and bio for the speaker.');
         }
     };
 
@@ -41,7 +42,7 @@ const AddSessionForm = () => {
         e.preventDefault();
         try {
             await api.post('/schedule', { ...session, eventId });
-            alert('Session created successfully');
+            toast.success('Session created successfully');
             navigater("/")
             const startTime = session.startTime
             const endTime = session.endTime

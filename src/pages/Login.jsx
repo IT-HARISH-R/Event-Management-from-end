@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../axios';  
+import api from '../axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../Slice/userSlice ';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -43,6 +44,8 @@ const Login = () => {
 
             const response = await api.get('/auth/profile');
             dispatch(login(response.data));
+            toast.success('Login successfully !');
+
             navigate('/');
           } catch (err) {
             setError(err.message || 'Failed to fetch profile.');

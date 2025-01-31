@@ -3,6 +3,7 @@ import api from "../axios";
 import { Link } from "react-router-dom";
 import EventSchedule from "../componastion/EventSchedule";
 import Loading from "../componastion/Loading";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -52,7 +53,7 @@ const Dashboard = () => {
   const handleDeleteTicket = async (ticketId) => {
     try {
       await api.delete(`/ticket/cancel/${ticketId}`);
-      alert("Ticket canceled successfully.");
+      toast.success("Ticket canceled successfully.");
 
       // Reload ticket and event data
       setLoading(true);
@@ -82,7 +83,7 @@ const Dashboard = () => {
       setEventData(eventResponses);
     } catch (err) {
       console.error("Error deleting ticket:", err);
-      alert("An error occurred while deleting the ticket.");
+      toast.error("An error occurred while deleting the ticket.");
     } finally {
       setLoading(false);
     }

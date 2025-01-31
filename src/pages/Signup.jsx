@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../axios";
+import { toast } from "react-toastify";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -25,16 +26,15 @@ const Signup = () => {
                 username: formData.username,
                 email: formData.email,
                 password: formData.password,
-            },{ withCredentials: true});
-
-            alert(response.data.message);
-
+            }, { withCredentials: true });
             if (response.data.status) {
+                toast.success('Sign Up successfully!');
+
                 navigate("/login");
             }
         } catch (err) {
             console.error("Error Sign up:", err);
-            alert(err.response?.data?.message || "Signup failed. Please try again.");
+            toast.error(err.response?.data?.message || "Signup failed. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -91,11 +91,10 @@ const Signup = () => {
                 <button
                     type="submit"
                     disabled={loading}
-                    className={`w-full py-2 rounded-md transition duration-300 ${
-                        loading
+                    className={`w-full py-2 rounded-md transition duration-300 ${loading
                             ? "bg-gray-400 cursor-not-allowed"
                             : "bg-blue-500 text-white hover:bg-blue-400"
-                    }`}
+                        }`}
                 >
                     {loading ? "Signing Up..." : "Sign Up"}
                 </button>

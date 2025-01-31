@@ -52,7 +52,7 @@ const EventSchedule = ({ eventId }) => {
             today: 'Today',
             month: 'Month',
             week: 'Week',
-            day: 'Day',
+            day: 'Day', 
           }}
           height="auto"
           // className="p-4"

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // import jwtDecode from 'jwt-decode';
 import { login, logout } from '../Slice/userSlice ';
 import Loading from '../componastion/Loading';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -39,7 +40,7 @@ const Profile = () => {
   const handleLogout = () => {
     dispatch(logout());
     localStorage.removeItem('token');
-    alert('Logged out successfully!');
+    toast.success('Logged out successfully !');
     navigate('/login');
   };
 
