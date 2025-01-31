@@ -25,6 +25,7 @@ import PassworeForgot from './pages/PassworeForgot';
 import ResetPassword from './pages/ResetPassword';
 import CreateOrganizer from './pages/CreateOrganizer';
 import UserAccounts from './componastion/UserAccounts';
+import Loading from './componastion/Loading';
 
 
 // Import the new ticket booking and payment components
@@ -58,6 +59,7 @@ const App = () => {
             {/* Add Route for Event Details */}
             <Route path="/event/:id" element={<EventDetails />} />
             <Route path="/booking/:id" element={<BookingPage />} /> {/* New booking page route */}
+
 
             <Route path="/ticket/transfer/:ticketId" element={<TransferTicket />} />
 

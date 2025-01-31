@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import jwtDecode from 'jwt-decode';
 import { login, logout } from '../Slice/userSlice ';
+import Loading from '../componastion/Loading';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -12,7 +13,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user.user);  
+  const user = useSelector((state) => state.user.user);
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -42,7 +43,7 @@ const Profile = () => {
     navigate('/login');
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return  <Loading />;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
@@ -50,7 +51,7 @@ const Profile = () => {
       <div className="bg-white p-6 rounded-md shadow-md w-96">
         <h2 className="text-2xl font-bold text-center mb-4">User Profile</h2>
 
-        {profile ? (
+        {user &&
           <>
             <div className="mb-4">
               <h3 className="text-lg font-medium">Name:</h3>
@@ -71,9 +72,11 @@ const Profile = () => {
               Log Out
             </button>
           </>
-        ) : (
+
+        }
+        {!user &&
           <p>Profile not found</p>
-        )}
+        }
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../axios'; // Your API handler
+import Loading from './Loading';
 
 const ManageRegistrations = () => {
   const [registrations, setRegistrations] = useState([]);
@@ -52,9 +53,7 @@ const ManageRegistrations = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <p className="text-xl">Loading your registrations...</p>
-      </div>
+      <Loading />
     );
   }
 

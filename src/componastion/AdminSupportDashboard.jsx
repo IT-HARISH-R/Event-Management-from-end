@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios"; // Adjust the path to your axios instance
+import Loading from "./Loading";
 
 const AdminSupportDashboard = () => {
   const [inquiries, setInquiries] = useState([]);
@@ -55,7 +56,7 @@ const AdminSupportDashboard = () => {
   };
 
   if (loading) {
-    return <p className="text-center mt-4">Loading inquiries...</p>;
+    return <Loading />;
   }
 
   return (

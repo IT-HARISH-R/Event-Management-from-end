@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../axios';
 import { Link } from 'react-router-dom';
+import Loading from '../componastion/Loading';
 
 const Search = () => {
   const [search, setSearch] = useState('');
@@ -116,7 +117,7 @@ const Search = () => {
 
       {/* Loading state */}
       {loading ? (
-        <div className="text-center">Loading...</div>
+         <Loading />
       ) : (
         <div className="p-4">
           <h1 className="text-3xl font-bold mb-6">Events</h1>

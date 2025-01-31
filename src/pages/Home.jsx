@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../Slice/userSlice ';
+import Loading from '../componastion/Loading';
 
 const Home = () => {
   const [events, setEvents] = useState([]);
@@ -43,14 +44,14 @@ const Home = () => {
       } catch (err) {
         console.error(err);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
     fetchProfile();
   }, [dispatch]);
 
-  if (loading) return <div className="p-4">Loading events...</div>;
+  if (loading) return <Loading />;
   if (error) return <div className="p-4 text-red-500">{error}</div>;
 
   return (

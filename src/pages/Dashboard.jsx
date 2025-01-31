@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../axios";
 import { Link } from "react-router-dom";
 import EventSchedule from "../componastion/EventSchedule";
+import Loading from "../componastion/Loading";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -89,9 +90,7 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <p>Loading...</p>
-      </div>
+      <Loading />
     );
   }
 

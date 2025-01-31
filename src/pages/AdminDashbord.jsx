@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from "../axios";
 import EventAnalytics from "../componastion/EventAnalytics";
 import { Link } from 'react-router-dom';
+import Loading from '../componastion/Loading';
 
 const AdminDashboard = () => {
     const [events, setEvents] = useState([]);
@@ -34,7 +35,7 @@ const AdminDashboard = () => {
         }
     };
 
-    if (loading) return <p className="text-center mt-4">Loading events...</p>;
+    if (loading) return <Loading />;
 
     return (
         <div className="p-4">
@@ -84,15 +85,16 @@ const AdminDashboard = () => {
                         )}
 
                         {/* Render event analytics if approved */}
-                        {event.approvalStatus === 'Approved' && event.candidates  && <EventAnalytics event={event} />}
+                       { console.log(event)} 
+                        {event.approvalStatus === 'Approved' && event.candidates.length > 0  && <EventAnalytics event={event} />}
                     </div>
-                ))}
+                ))} 
             </div>
         </div>
-    );
+    ); 
 };
 
-export default AdminDashboard;
+export default AdminDashboard; 
 
 
 
