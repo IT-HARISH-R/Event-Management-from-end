@@ -41,7 +41,7 @@ const Navbar = () => {
                 {/* Links for Desktop */}
                 <div className="hidden lg:flex space-x-6">
                     <Link
-                        to="/"
+                        to="/home"
                         className="text-lg hover:text-gray-400 transition duration-300"
                     >
                         Home

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="bg-gray-50 w-[100vw] relative translate-x-[-10%]">
+    <div className="bg-gray-50">
       {/* Hero Section */}
       <header className="relative w-full min-h-screen flex items-center justify-center text-white text-center">
         {/* Background Image with Overlay */}
