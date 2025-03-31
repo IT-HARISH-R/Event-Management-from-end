@@ -26,6 +26,7 @@ import ResetPassword from './pages/ResetPassword';
 import CreateOrganizer from './pages/CreateOrganizer';
 import UserAccounts from './componastion/UserAccounts';
 import { ToastContainer } from 'react-toastify';
+import Hero from './pages/Hero';
 
 
 // Import the new ticket booking and payment components
@@ -40,7 +41,8 @@ const App = () => {
         <Navbar />
         <div className="container mx-auto">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Hero />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/eventform" element={<EventForm />} /> 
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
